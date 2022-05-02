@@ -41,3 +41,10 @@ class DespesaAnoMesViewSet(viewsets.ModelViewSet):
     """
     Visualizar por Ano/Mês
     """
+
+    serializer_class = ReceitaSerial
+
+    def get_queryset(self):
+        ano = self.kwargs['ano']
+        mes = self.kwargs['mes']
+        return Despesa.objects.filter(data__year=ano, data__month=mes)
