@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from receitas.models import *
+
+admin.site.register(Receita)
+admin.site.register(Despesa)

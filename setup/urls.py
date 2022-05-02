@@ -25,5 +25,6 @@ router.register('despesas', DespesaViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
+    path('receitas/<int:ano>/<int:mes>', ReceitaAnoMesViewSet.as_view({"get": "list"}))
 
 ]
