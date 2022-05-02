@@ -19,8 +19,8 @@ from rest_framework import routers
 from receitas.views import *
 
 router = routers.DefaultRouter()
-router.register('receitas', ReceitaViewSet)
-router.register('despesas', DespesaViewSet)
+router.register('receitas', ReceitaViewSet, basename='receitas')
+router.register('despesas', DespesaViewSet, basename='despesas')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -3,7 +3,7 @@ from rest_framework import viewsets, filters
 
 from receitas.serializers import *
 
-
+# Viewset da Receita
 class ReceitaViewSet(viewsets.ModelViewSet):
     """
     Visualizar as Receitas
@@ -12,6 +12,7 @@ class ReceitaViewSet(viewsets.ModelViewSet):
     serializer_class = ReceitaSerial
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['descricao']
+
 
 class ReceitaAnoMesViewSet(viewsets.ModelViewSet):
     """
@@ -25,7 +26,7 @@ class ReceitaAnoMesViewSet(viewsets.ModelViewSet):
         mes = self.kwargs['mes']
         return Receita.objects.filter(data__year=ano, data__month=mes)
 
-
+# Viewset da Despesa
 class DespesaViewSet(viewsets.ModelViewSet):
     """
     Visualizar as Despesas
@@ -34,7 +35,6 @@ class DespesaViewSet(viewsets.ModelViewSet):
     serializer_class = DespesaSerial
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['descricao']
-
 
 
 class DespesaAnoMesViewSet(viewsets.ModelViewSet):
@@ -48,3 +48,6 @@ class DespesaAnoMesViewSet(viewsets.ModelViewSet):
         ano = self.kwargs['ano']
         mes = self.kwargs['mes']
         return Despesa.objects.filter(data__year=ano, data__month=mes)
+
+# Viewset do Resumo
+

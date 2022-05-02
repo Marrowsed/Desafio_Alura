@@ -13,3 +13,6 @@ class DespesaSerial(serializers.ModelSerializer):
     class Meta:
         model = Despesa
         fields = "__all__"
+
+#Serializer de Resumo
+

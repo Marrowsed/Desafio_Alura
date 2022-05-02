@@ -1,9 +1,14 @@
 from django.db import models
 
+
 class Receita(models.Model):
     descricao = models.CharField(max_length=200, unique_for_month="data")
     valor = models.FloatField()
     data = models.DateField()
+
+    def __str__(self):
+        return f"{self.descricao} - R${self.valor}"
+
 
 class Despesa(models.Model):
     OUTRAS = "Outras"
@@ -21,3 +26,6 @@ class Despesa(models.Model):
     categoria = models.CharField(max_length=200, blank=False, choices=ESCOLHAS, default=OUTRAS)
     valor = models.FloatField()
     data = models.DateField()
+
+    def __str__(self):
+        return f"{self.descricao} - R${self.valor}"
