@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 
 from receitas.serializers import *
 
+
 # Viewset da Receita
 class ReceitaViewSet(viewsets.ModelViewSet):
     """
@@ -28,6 +29,7 @@ class ReceitaAnoMesViewSet(viewsets.ModelViewSet):
         ano = self.kwargs['ano']
         mes = self.kwargs['mes']
         return Receita.objects.filter(data__year=ano, data__month=mes)
+
 
 # Viewset da Despesa
 class DespesaViewSet(viewsets.ModelViewSet):
@@ -52,12 +54,14 @@ class DespesaAnoMesViewSet(viewsets.ModelViewSet):
         mes = self.kwargs['mes']
         return Despesa.objects.filter(data__year=ano, data__month=mes)
 
+
 # Viewset do Resumo
 
 class ResumoViewSet(APIView):
     """
     Visualizar Resumo por Ano/Mês
     """
+
     def get(self, request, ano, mes):
         valor_total_receitas = Receita.objects.filter(data__year=ano, data__month=mes).aggregate(
             Sum('valor'))['valor__sum'] or 0
@@ -77,4 +81,3 @@ class ResumoViewSet(APIView):
             'Categoria/Mês': despesa_por_categoria,
             'Saldo Final/Mês': saldo_final
         })
-
