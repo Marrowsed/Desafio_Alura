@@ -62,6 +62,8 @@ class ResumoViewSet(APIView):
     Visualizar Resumo por Ano/Mês
     """
 
+    queryset = Receita.objects.none()
+
     def get(self, request, ano, mes):
         valor_total_receitas = Receita.objects.filter(data__year=ano, data__month=mes).aggregate(
             Sum('valor'))['valor__sum'] or 0
