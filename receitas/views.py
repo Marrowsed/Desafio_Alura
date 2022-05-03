@@ -1,6 +1,7 @@
 from django.db.models import Sum
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import viewsets, filters
+from rest_framework import viewsets, filters, generics
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -83,3 +84,10 @@ class ResumoViewSet(APIView):
             'Categoria/Mês': despesa_por_categoria,
             'Saldo Final/Mês': saldo_final
         })
+
+
+# Serializer para cadastrar
+
+class RegistraUsuarioView(generics.CreateAPIView):
+    permission_classes = (AllowAny,)
+    serializer_class = RegistraSerial
